@@ -11,10 +11,6 @@ describe(UniqueIdService.name, () => {
     should generate id when called with prefix`, () => {
     const id = service.generateUniqueIdWithPrefix('app');
     expect(id.startsWith('app-')).toBeTrue();
-
-    expect(true).toBeTrue(); // Verdade se o valor literal true é igual a true. Usar essa comparação de preferência.
-    expect(new Boolean(true)).toBe(new Boolean(true)); // Verdade se ps dois objetos são iguais. Ou seja, só serão iguais se apontarem para a mesma posição de memória.
-    expect('a').toBeTruthy(); // Verdade se o valor não é nulo, undefined ou '' (vazio)
   });
 
   it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name}
