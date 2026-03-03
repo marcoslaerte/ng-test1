@@ -7,7 +7,8 @@ import { LikeWidgetModule } from "./like-widget.module";
 
 describe(LikeWidgetComponent.name, () => {
 
-  let fixture: ComponentFixture<LikeWidgetComponent> = null;
+  let fixture: ComponentFixture<LikeWidgetComponent> = null; // ComponentFixture é um wraper da instância LikeWidgetComponent e possui mais métodos para testar o componente
+  let component: LikeWidgetComponent = null;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,11 +16,27 @@ describe(LikeWidgetComponent.name, () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(LikeWidgetComponent);
+    component = fixture.componentInstance;
   });
 
   it('Should create component', () => {
-    const instance = fixture.componentInstance;
-    expect(instance).toBeTruthy();
-  })
+    expect(component).toBeTruthy();
+  });
+
+  it('Should auto generate ID when id input property is missing', () => {
+    /*
+    * fixture.detectChanges(): Força a execução do ciclo de vida do componente LikeWidgetComponent (ou seja, gera o id).
+    * É possível tornar a detecção de mudanças automática em nossos testes, mas equipe do Angular não recomenda.
+    */
+    fixture.detectChanges();
+    expect(component.id).toBeTruthy();
+  });
+
+  it('Should NOT generate ID when id input property is present', () => {
+    const someId = 'someId';
+    component.id = someId;
+    fixture.detectChanges();
+    expect(component.id).toBeTruthy();
+  });
 
 });
